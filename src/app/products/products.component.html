@@ -1,0 +1,53 @@
+<div *ngIf="products">
+  <div><h3>{{title}}</h3></div>
+  <div *ngFor="let p of products._embedded.products">
+    <div class="col-md-6">
+      <div class="panel panel-default heighted">
+        <div class="panel-heading">{{p.name}}</div>
+        <div class="panel-body">
+          <img class="img-thumbnail img-rounded btn" (click)="onProductDetails(p)"   src="{{this.catalogueService.host+'/picture/'+p.id+'?ts='+getTs()}}"/>
+          <div *ngIf="isAdmin()">
+            <p>
+              <button (click)="onEditPhoto(p)">
+                <span class="glyphicon glyphicon-edit"></span>
+              </button>
+            </p>
+            <p *ngIf="editPhoto && currentProduct==p">
+              <input type="file" (change)="onSelectedFile($event)">
+            </p>
+            <p *ngIf="editPhoto && currentProduct==p">
+              <button class="btn btn-success" (click)="uploadPhoto()">Upload</button>
+              {{progress}}
+            </p>
+          </div>   
+          <div>
+            {{p.description}}
+          </div>
+          <div>
+            <label>Price : {{p.currentPrice|number:'0.2'}}</label>
+          </div>
+          <div>
+            <span *ngIf="p.promotion">
+              <img src="assets/images/promo.png" class="img-thumbnail img-circle" height="30">
+            </span>
+            <span *ngIf="p.selected">
+              <img src="assets/images/favorite.png" class="img-thumbnail img-circle" height="30">
+            </span>
+            <span *ngIf="p.available">
+              <img src="assets/images/available.png" class="img-thumbnail img-circle" height="30">
+            </span>
+          </div>
+          <div>
+           <form #f="ngForm" (ngSubmit)="onAddProductToCaddy(p)">
+              <label class="control-label">Quantity :</label>
+              <input type="number" name="quantity" [(ngModel)]="p.quantity" ngModel style="width :40px">
+              <button>
+                <img src="assets/images/caddy.png">
+              </button>
+            </form>
+          </div>
+        </div>
+    </div>
+  </div>
+  </div>
+</div>
