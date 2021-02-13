@@ -13,10 +13,13 @@
           <li class="clickable"><a (click)="onProductsDispo()">Disponible</a></li>
         </ul>
       </li>
-      <li><a href="#">Page 2</a></li>
+      <li><a routerLink="/panies">Panies</a></li>
       <li><a href="#">Page 3</a></li>
     </ul>
-    <ul class="nav navbar-nav pull-right">
+    <ul class="nav navbar-nav pull-right" >
+      <li >
+        <a>{{panieService.getCurrentPanie().name}} | {{panieService.getCurrentPanie().items.size}}</a>
+      </li>
       <li>
         <a class="btn" (click)="onLogout()">
           <span class="glyphicon glyphicon-log-out"></span>

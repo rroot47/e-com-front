@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 import { CatalogueService } from './../catalogue.service';
 import { ProductModel } from './../model/product.model';
+import { PanieService } from './../services/panie.service';
 
 @Component({
   selector: 'app-products',
@@ -25,7 +26,8 @@ export class ProductsComponent implements OnInit {
      public catalogueService: CatalogueService,
      public route: ActivatedRoute, 
      private router: Router,
-     public authService:AuthenticationService
+     public authService:AuthenticationService,
+     public panieService:PanieService
      ) {
   
   }
@@ -107,5 +109,7 @@ export class ProductsComponent implements OnInit {
     this.router.navigateByUrl("product-detail/"+url);
   }
 
-  onAddProductToCaddy(p:any){}
+  onAddProductToPanie(p:ProductModel){
+    this.panieService.addProductToPanie(p);
+  }
 }

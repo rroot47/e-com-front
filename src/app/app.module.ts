@@ -7,13 +7,15 @@ import { ProductsComponent } from './products/products.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { PaniesComponent } from './panies/panies.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
     LoginComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    PaniesComponent
   ],
   imports: [
     BrowserModule,

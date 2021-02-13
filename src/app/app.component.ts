@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CatalogueService } from './catalogue.service';
 import { AuthenticationService } from './services/authentication.service';
+import { PanieService } from './services/panie.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,12 @@ export class AppComponent implements OnInit{
 
   public categories:any;
   public currentCat:any; //pour le categories selectionée
-  constructor( private catalogueService :CatalogueService, private router:Router, private authService:AuthenticationService){}
+  constructor( 
+              private catalogueService :CatalogueService, 
+              private router:Router, 
+              private authService:AuthenticationService,
+              public panieService:PanieService
+              ){}
   ngOnInit(): void {
     this.authService.loadAuthenticatedUserFormLocalStorage();
     this.getCategories();
